@@ -10,7 +10,7 @@ build:
 	$(CXX) $(CXXFLAGS) $(TARGET)/main.cpp -o $(TARGET)/$(TARGET)
 
 run: build
-	./$(TARGET)/$(TARGET) < $(TARGET)/input
+	./$(TARGET)/$(TARGET) < $(TARGET)/input.txt
 
 clean:
 	rm -rf day{1..30}/day*
