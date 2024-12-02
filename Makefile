@@ -1,10 +1,14 @@
 CXX = g++
-
 CXXFLAGS = -std=c++98 -Wall -g
-
 TARGET = day1
+DAYS := $(shell ls -d day*/ | sed 's:/::')
 
-.PHONY: build run clean list
+.PHONY: all build run clean list
+
+all:
+	@for day in $(DAYS); do \
+		$(MAKE) TARGET=$$day build run; \
+	done
 
 build:
 	$(CXX) $(CXXFLAGS) $(TARGET)/main.cpp -o $(TARGET)/$(TARGET)
@@ -16,7 +20,9 @@ clean:
 	rm -rf day{1..30}/day*
 
 list:
-	@echo "Available days"
-	@ls -d day*/ | sed 's:/::'
+	@echo "Available days:"
+	@for day in $(DAYS); do \
+		echo $$day; \
+	done
 
-.DEFAULT_GOAL := list
+.DEFAULT_GOAL := all

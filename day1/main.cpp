@@ -22,7 +22,7 @@ int main() {
 
   int totalDistance = 0;
   for (int i = 0; i < v1.size(); i++) {
-    totalDistance += abs(v1.at(i) - v2.at(i));
+    totalDistance += abs(v1[i] - v2[i]);
   }
   cout << "Part One:\nTotal Distance: " << totalDistance << endl << endl;
 
@@ -30,11 +30,11 @@ int main() {
   for (int i = 0; i < v1.size(); i++) {
     int dups = 0;
     for (int j = 0; j < v1.size(); j++) {
-      if (v1.at(i) == v2.at(j)) {
+      if (v1[i] == v2[j]) {
         dups++;
       }
     }
-    similarityScore += dups * v1.at(i);
+    similarityScore += dups * v1[i];
   }
 
   cout << "Part Two:" << endl
