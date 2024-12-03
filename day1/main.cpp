@@ -1,15 +1,13 @@
 #include <algorithm>
 #include <iostream>
-#include <vector>
-using namespace std;
 
 int main() {
-  vector<int> v1;
-  vector<int> v2;
+  std::vector<int> v1;
+  std::vector<int> v2;
   int num;
   int i = 0;
 
-  while (cin >> num) {
+  while (std::cin >> num) {
     if (i++ % 2 == 0) {
       v1.push_back(num);
     } else {
@@ -24,7 +22,7 @@ int main() {
   for (int i = 0; i < v1.size(); i++) {
     totalDistance += abs(v1[i] - v2[i]);
   }
-  cout << "Part One:\nTotal Distance: " << totalDistance << endl << endl;
+  std::cout << "Part One:\nTotal Distance: " << totalDistance << std::endl;
 
   int similarityScore = 0;
   for (int i = 0; i < v1.size(); i++) {
@@ -37,8 +35,9 @@ int main() {
     similarityScore += dups * v1[i];
   }
 
-  cout << "Part Two:" << endl
-       << "Similarity Score: " << similarityScore << endl;
+  std::cout << "Part Two:" << std::endl
+            << "Similarity Score: " << similarityScore << std::endl
+            << std::endl;
 
   return 0;
 }

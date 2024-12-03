@@ -1,10 +1,7 @@
 #include <iostream>
 #include <sstream>
-#include <vector>
 
-using namespace std;
-
-bool isSafe(const vector<int> nums) {
+inline static bool isSafe(const std::vector<int> nums) {
   char dir = nums[1] > nums[0] ? 'a' : 'd';
 
   for (int i = 1; i < nums.size(); i++) {
@@ -13,8 +10,8 @@ bool isSafe(const vector<int> nums) {
     int diff = abs(curr - prev);
 
     if ((!(curr > prev && dir == 'a') &&
-         !(curr < prev && dir == 'd')) || // wrong direction
-        !(diff >= 1 && diff <= 3))        // wrong difference
+         !(curr < prev && dir == 'd')) ||  // wrong direction
+        !(diff >= 1 && diff <= 3))         // wrong difference
     {
       return false;
     }
@@ -22,12 +19,12 @@ bool isSafe(const vector<int> nums) {
   return true;
 }
 
-bool isSafeWithDampener(const vector<int> &original) {
+inline static bool isSafeWithDampener(const std::vector<int>& original) {
   if (isSafe(original))
     return true;
 
   for (int skip = 0; skip < original.size(); skip++) {
-    vector<int> modified;
+    std::vector<int> modified;
 
     for (int i = 0; i < original.size(); i++) {
       if (i != skip) {
@@ -44,13 +41,13 @@ bool isSafeWithDampener(const vector<int> &original) {
 }
 
 int main() {
-  string line;
+  std::string line;
   int safeReports = 0;
   int safeReportsWithDampener = 0;
 
-  while (getline(cin, line)) {
-    vector<int> report;
-    stringstream ss(line);
+  while (getline(std::cin, line)) {
+    std::vector<int> report;
+    std::stringstream ss(line);
     int num;
 
     while (ss >> num) {
@@ -66,8 +63,9 @@ int main() {
     }
   }
 
-  cout << "Part One:\nSafe Reports: " << safeReports << endl << endl;
-  cout << "Part Two:\nSafe Reports with Dampener: " << safeReportsWithDampener
-       << endl;
+  std::cout << "Part One:\nSafe Reports: " << safeReports << std::endl;
+  std::cout << "Part Two:\nSafe Reports with Dampener: "
+            << safeReportsWithDampener << std::endl
+            << std::endl;
   return 0;
 }
