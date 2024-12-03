@@ -45,24 +45,23 @@ int main() {
   size_t pos = 0;
 
   while (pos < input.length()) {
-    size_t doPos = input.find("do()", pos);
-    size_t dontPos = input.find("don't()", pos);
+    size_t doPosition = input.find("do()", pos);
+    size_t dontPosition = input.find("don't()", pos);
     size_t next = input.length();
 
-    if (doPos != std::string::npos || dontPos != std::string::npos) {
-      next = std::min(doPos != std::string::npos ? doPos : input.length(),
-                      dontPos != std::string::npos ? dontPos : input.length());
+    if (doPosition != std::string::npos) {
+      next = doPosition;
+    }
+
+    if (dontPosition != std::string::npos && dontPosition < next) {
+      next = dontPosition;
     }
 
     if (enabled) {
       enabledSum += doMul(input.substr(pos, next - pos));
     }
 
-    if (next == input.length()) {
-      break;
-    }
-
-    enabled = (next == doPos);
+    enabled = next == doPosition;
     pos = next + (enabled ? 4 : 6);
   }
 
