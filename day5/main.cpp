@@ -3,22 +3,6 @@
 #include <map>
 #include <sstream>
 
-void printVec(const std::vector<int>& vec) {
-  std::cout << "[ ";
-  for (int x : vec)
-    std::cout << x << " ";
-  std::cout << "]\n";
-}
-
-void printMap(const std::map<int, std::vector<int>>& m) {
-  std::cout << "{\n";
-  for (const auto& [key, vec] : m) {
-    std::cout << "  " << key << ": ";
-    printVec(vec);
-  }
-  std::cout << "}\n";
-}
-
 inline static std::vector<std::string> split(const std::string& s,
                                              const char delim) {
   std::vector<std::string> result;
@@ -65,16 +49,10 @@ inline static std::vector<std::vector<int>> getUpdates(std::string line) {
   return updates;
 }
 
-inline static bool followsRule(const std::vector<int> rule, const int page) {
-  return std::find(rule.begin(), rule.end(), page) != rule.end();
-}
-
 inline static bool needsSwap(const std::map<int, std::vector<int>>& rules,
                              int a, int b) {
-  if (rules.count(b) && followsRule(rules.at(b), a)) {
-    return true;
-  }
-  return false;
+  const std::vector<int> rule = rules.at(b);
+  return rules.count(b) && std::find(rule.begin(), rule.end(), a) != rule.end();
 }
 
 int main() {
