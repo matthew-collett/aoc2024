@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -g
+CXXFLAGS = -std=c++17 -Wall -g
 TARGET = day1
 DAYS := $(shell ls -d day*/ | sed 's:/::')
 

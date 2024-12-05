@@ -66,6 +66,7 @@ int main() {
   }
 
   std::cout << "Part Two:\nResults of Enabled Instructions: " << enabledSum
+            << std::endl
             << std::endl;
   return 0;
 }

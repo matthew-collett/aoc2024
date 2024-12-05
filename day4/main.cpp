@@ -85,5 +85,6 @@ int main() {
             << std::endl;
   const int xShapeXmasCount = countXShapeXMAS(wordSearch);
   std::cout << "Part Two:\nNumber of X Shape XMAS Occurrences: "
-            << xShapeXmasCount << std::endl;
+            << xShapeXmasCount << std::endl
+            << std::endl;
 }
