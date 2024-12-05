@@ -4,8 +4,7 @@
 
 static const auto r = std::regex(R"(mul\(\d{1,3}\,\d{1,3}\))");
 
-inline static std::vector<std::string> split(const std::string& s,
-                                             const char delim) {
+inline static auto split(const std::string& s, const char delim) {
   std::vector<std::string> result;
   std::stringstream ss(s);
   std::string item;
@@ -19,24 +18,23 @@ inline static std::vector<std::string> split(const std::string& s,
 
 inline static int doMul(const std::string input) {
   int results = 0;
-  std::sregex_iterator begin =
-      std::sregex_iterator(input.begin(), input.end(), r);
+  auto begin = std::sregex_iterator(input.begin(), input.end(), r);
 
-  for (std::sregex_iterator i = begin; i != std::sregex_iterator(); ++i) {
-    std::string ms = i->str();
+  for (auto& i = begin; i != std::sregex_iterator(); ++i) {
+    auto ms = i->str();
     ms.erase(ms.begin(), ms.begin() + 4);
     ms.erase(ms.size() - 1);
-    std::vector<std::string> parts = split(ms, ',');
+    const auto& parts = split(ms, ',');
     std::vector<int> factors;
     std::transform(parts.begin(), parts.end(), std::back_inserter(factors),
-                   [](const std::string& s) { return std::stoi(s); });
+                   [](const auto& s) { return std::stoi(s); });
     results += factors[0] * factors[1];
   }
   return results;
 }
 
 int main() {
-  std::string input = std::string(std::istreambuf_iterator<char>(std::cin), {});
+  const auto& input = std::string(std::istreambuf_iterator<char>(std::cin), {});
   std::cout << "Part One:\nResults of Instructions: " << doMul(input)
             << std::endl;
 

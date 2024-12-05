@@ -2,9 +2,9 @@
 #include <sstream>
 
 inline static bool isSafe(const std::vector<int> nums) {
-  char dir = nums[1] > nums[0] ? 'a' : 'd';
+  auto dir = nums[1] > nums[0] ? 'a' : 'd';
 
-  for (unsigned long i = 1; i < nums.size(); i++) {
+  for (size_t i = 1; i < nums.size(); i++) {
     int curr = nums[i];
     int prev = nums[i - 1];
     int diff = abs(curr - prev);
@@ -23,10 +23,10 @@ inline static bool isSafeWithDampener(const std::vector<int>& original) {
   if (isSafe(original))
     return true;
 
-  for (unsigned long skip = 0; skip < original.size(); skip++) {
+  for (size_t skip = 0; skip < original.size(); skip++) {
     std::vector<int> modified;
 
-    for (unsigned long i = 0; i < original.size(); i++) {
+    for (size_t i = 0; i < original.size(); i++) {
       if (i != skip) {
         modified.push_back(original[i]);
       }
@@ -36,7 +36,6 @@ inline static bool isSafeWithDampener(const std::vector<int>& original) {
       return true;
     }
   }
-
   return false;
 }
 

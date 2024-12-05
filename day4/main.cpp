@@ -1,11 +1,11 @@
 #include <iostream>
 
-inline static std::vector<std::vector<char>> getInput() {
+inline static auto getInput() {
   std::vector<std::vector<char>> wordSearch;
   std::string line;
   while (std::cin >> line) {
     std::vector<char> row;
-    for (auto& ch : line) {
+    for (const auto& ch : line) {
       row.push_back(ch);
     }
     wordSearch.push_back(row);
@@ -44,8 +44,8 @@ inline static int countXMAS(const std::vector<std::vector<char>> wordSearch) {
   };
 
   int count = 0;
-  for (unsigned long i = 0; i < wordSearch.size(); i++) {
-    for (unsigned long j = 0; j < wordSearch[0].size(); j++) {
+  for (size_t i = 0; i < wordSearch.size(); i++) {
+    for (size_t j = 0; j < wordSearch[0].size(); j++) {
       for (const auto& dir : directions) {
         if (findWord(0, "XMAS", wordSearch, i, j, dir.first, dir.second)) {
           count++;
@@ -58,8 +58,8 @@ inline static int countXMAS(const std::vector<std::vector<char>> wordSearch) {
 
 int countXShapeXMAS(const std::vector<std::vector<char>>& grid) {
   int count = 0;
-  for (unsigned long i = 1; i < grid.size() - 1; i++) {
-    for (unsigned long j = 1; j < grid[0].size() - 1; j++) {
+  for (size_t i = 1; i < grid.size() - 1; i++) {
+    for (size_t j = 1; j < grid[0].size() - 1; j++) {
       if (grid[i][j] != 'A') {
         continue;
       }
@@ -79,12 +79,10 @@ int countXShapeXMAS(const std::vector<std::vector<char>>& grid) {
 }
 
 int main() {
-  std::vector<std::vector<char>> wordSearch = getInput();
-  const int xmasCount = countXMAS(wordSearch);
-  std::cout << "Part One:\nNumber of XMAS Occurrences: " << xmasCount
-            << std::endl;
-  const int xShapeXmasCount = countXShapeXMAS(wordSearch);
+  const auto& wordSearch = getInput();
+  std::cout << "Part One:\nNumber of XMAS Occurrences: "
+            << countXMAS(wordSearch) << std::endl;
   std::cout << "Part Two:\nNumber of X Shape XMAS Occurrences: "
-            << xShapeXmasCount << std::endl
+            << countXShapeXMAS(wordSearch) << std::endl
             << std::endl;
 }
