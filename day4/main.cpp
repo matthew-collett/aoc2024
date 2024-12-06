@@ -85,4 +85,5 @@ int main() {
   std::cout << "Part Two:\nNumber of X Shape XMAS Occurrences: "
             << countXShapeXMAS(wordSearch) << std::endl
             << std::endl;
+  return 0;
 }

@@ -123,4 +123,5 @@ int main() {
   const int& stuckPositions = findStuckPositions(map);
   std::cout << "Part Two:\nNumber of Different Positions for Obstacles: "
             << stuckPositions << std::endl;
+  return 0;
 }

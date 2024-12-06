@@ -92,4 +92,5 @@ int main() {
   std::cout << "Part One:\nSum of Middle Pages After Fixing Incorrect Updates: "
             << incorrectFixedSum << std::endl
             << std::endl;
+  return 0;
 }
